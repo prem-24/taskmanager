@@ -1,0 +1,140 @@
+* {
+  padding: 0px;
+  margin: 0px;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.tasks-container {
+  margin-top: 30px !important;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #945acb;
+  /* margin-top: 20px; */
+  width: 100%;
+}
+.container-1 {
+  max-width: 900px;
+  margin: 0 auto;
+  border-radius: 5px;
+  width: 100%;
+}
+h1 {
+  text-align: center;
+  color: #5e5e5e;
+  padding: 20px;
+}
+
+form {
+  display: flex;
+  /* margin-bottom: 10px; */
+}
+
+.input {
+  flex-grow: 1;
+  padding: 16px 10px;
+  margin-right: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  width: 450px;
+}
+
+button {
+  background-color: #b47aea;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  padding: 15px 20px;
+}
+.clear-btn a {
+  text-decoration: none;
+  border: none;
+}
+.clear-btn {
+  background-color: #ffffff;
+  color: #8a4ac6 !important;
+  margin-top: 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  padding: 15px 20px;
+  width: 120px;
+}
+
+button:hover {
+  background-color: #8a4ac6;
+  color: #fff;
+}
+.tasks-container > div > h2 {
+  /* margin-top: 50px; */
+  color: #ffffff;
+  padding: 20px 0;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+}
+.list-cont > li {
+  color: #000000;
+}
+.list-cont a {
+  color: #5e5e5e;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.list-cont a:hover {
+  color: #a04feb !important;
+  /* background-color: #b47aea; */
+  text-decoration: none;
+}
+.list-cont {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  margin-bottom: 5px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #fff;
+}
+
+.complete {
+  text-decoration: line-through;
+  color: #888;
+}
+.to-do-img-1 {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+}
+.to-do-img {
+  display: flex;
+  justify-content: center;
+  padding: 60px 0;
+  width: auto;
+  /* background-color: #000000; */
+}
+
+.to-do-img > img {
+  width: 100%;
+}
+
+h1 {
+  text-align: center;
+}
+
+
+
+#tasks {
+  width: 100%;
+}

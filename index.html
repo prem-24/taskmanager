@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Task Manager</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <!-- Add a new container for completed tasks -->
+
+    <h1>Task Manager</h1>
+    <div class="to-do-img-1">
+      <div class="to-do-img">
+        <img src="todo.svg" alt="" />
+      </div>
+    </div>
+
+    <div class="top-wrap">
+    
+      <div class="container-1">
+        <form id="task-form">
+          <input
+            class="input"
+            type="text"
+            id="task-title"
+            placeholder=" Enter task title "
+            required
+          />
+          <button type="submit">Add Task</button>
+        </form>
+      </div>
+
+      <div class="tasks-container">
+        <div id="tasks">
+          <h2>TaskDo</h2>
+          <ul id="task-list">
+            <div class="list-cont">
+              <li style="text-decoration: line-through">
+                Hello this is my first task
+              </li>
+              <a href="#"><img src="carbon_close-outline.svg" alt="" /></a>
+            </div>
+          </ul>
+        </div>
+
+        <div class="clear-btn">
+          <a href="#">clear all</a>
+        </div>
+      </div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
