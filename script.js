@@ -1,66 +1,116 @@
-
 let form = document.querySelector("#task-form");
 let input = document.querySelector(".input");
-
 let taskList = document.querySelector("#task-list");
-let claerAll = document.querySelector(".clear-btn");
+let clearAllBtn = document.querySelector(".clear-btn");
+let alertt = document.querySelector("h2");
 
-// console.log(form, input, taskList, claerAll);
+function loadEventListeners() {
+  // form submit event
+  form.addEventListener("submit", addTask);
 
-function loadEventslisterners() {
-    // form submit event
-  form.addEventListener("submit", (e) => {
-    e.preventDefault();
-    let task = input.value;
-    if (task == "") {
-      alert("Please enter a task");
-    } else {
-      let li = document.createElement("li");
-      li.innerHTML = task;
-      taskList.appendChild(li);
-      let listcont = document.createElement("div");
-      listcont.className = "list-cont";
-      let closebtn = document.createElement("a");
-      closebtn.innerHTML = `<img src="carbon_close-outline.svg" alt="" />`;
+  // clear all
+  clearAllBtn.addEventListener("click", clearAll);
 
-      listcont.appendChild(li);
-      listcont.appendChild(closebtn);
-      taskList.append(listcont);
+  // remove individually
+  taskList.addEventListener("click", remove);
 
-      input.value = "";
-    }
-  });
+  // clear all local store
+  clearAllBtn.addEventListener("click", removeAllLocalStore);
 
+  // getTask from local storage
+  document.addEventListener("DOMContentLoaded", getTask);
+}
 
-//   claer all 
+loadEventListeners();
 
-  claerAll.addEventListener("click", () => {
-    taskList.innerHTML = "";
-  });
+// local storage
 
+function addTask(e) {
+  e.preventDefault();
+  let task = input.value.trim(); // Trim whitespace from input value
+  if (task === "") {
+    alertt.textContent = "Please enter a task";
+    alertt.style.color = "red";
+  } else {
+    let li = document.createElement("li");
+    li.textContent = task; // Set text content directly
+    taskList.appendChild(li);
+    let listCont = document.createElement("div");
+    listCont.className = "list-cont";
+    let closeBtn = document.createElement("a");
+    closeBtn.innerHTML = `<img src="carbon_close-outline.svg" alt="" />`;
+    listCont.appendChild(li);
+    listCont.appendChild(closeBtn);
+    taskList.appendChild(listCont);
+    storeLocalValue(task); // Store task in local storage
+    input.value = "";
+    alertt.textContent = "Do Task";
+    alertt.style.color = "white";
+  }
+}
 
-//   remove individually
+function clearAll() {
+  taskList.innerHTML = "";
+  // Clear tasks from local storage
+  localStorage.removeItem("tasks");
+}
 
-  taskList.addEventListener("click", (e) => {
-    if (e.target.tagName == "IMG") {
-      e.target.parentElement.parentElement.remove();
-    }
+function remove(e) {
+  if (e.target.tagName === "IMG") {
+    e.target.parentElement.parentElement.remove();
+    // Remove task from local storage
+    removeLocalValue(e.target.parentElement.previousSibling.textContent);
+  }
+}
+
+function storeLocalValue(value) {
+  let tasks;
+
+  if (localStorage.getItem("tasks") === null) {
+    tasks = [];
+  } else {
+    tasks = JSON.parse(localStorage.getItem("tasks"));
+  }
+
+  tasks.push(value);
+
+  localStorage.setItem("tasks", JSON.stringify(tasks));
+}
+
+function removeLocalValue(value) {
+  let tasks = JSON.parse(localStorage.getItem("tasks"));
+
+  tasks = tasks.filter((task) => task !== value);
+
+  localStorage.setItem("tasks", JSON.stringify(tasks));
+}
+
+function getTask() {
+  let tasks;
+
+  if (localStorage.getItem("tasks") == null) {
+    tasks = [];
+  } else {
+    tasks = JSON.parse(localStorage.getItem("tasks"));
+  }
+  console.log(tasks);
+
+  tasks.forEach((task) => {
+    let li = document.createElement("li");
+    li.textContent = task; // Set text content directly
+    taskList.appendChild(li);
+    let listCont = document.createElement("div");
+    listCont.className = "list-cont";
+    let closeBtn = document.createElement("a");
+    closeBtn.innerHTML = `<img src="carbon_close-outline.svg" alt="" />`;
+    listCont.appendChild(li);
+    listCont.appendChild(closeBtn);
+    taskList.appendChild(listCont);
   });
 }
 
-loadEventslisterners();
 
-
-
-
-
-
-
-// <ul id="task-list">
-//      <div class="list-cont">
-//             <li style="text-decoration: line-through">
-//                 Hello this is my first task
-//             </li>
-//             <a href="#"><img src="carbon_close-outline.svg" alt="" /></a>
-//       </div>
-//  </ul>
+function removeAllLocalStore(){
+  taskList.innerHTML ="";
+  localStorage.clear("tasks");
+}
