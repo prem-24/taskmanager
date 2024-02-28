@@ -4,6 +4,9 @@ let taskList = document.querySelector("#task-list");
 let clearAllBtn = document.querySelector(".clear-btn");
 let alertt = document.querySelector("h2");
 
+let search = document.querySelector(".search-input");
+
+
 function loadEventListeners() {
   // form submit event
   form.addEventListener("submit", addTask);
@@ -19,9 +22,70 @@ function loadEventListeners() {
 
   // getTask from local storage
   document.addEventListener("DOMContentLoaded", getTask);
+
+  // search list
+  search.addEventListener("input",searchFilter);
 }
 
 loadEventListeners();
+
+
+// search Filter
+function searchFilter() {
+ let input = document.querySelector(".search-input");
+ let filter = input.value.toUpperCase();
+ let ul = document.querySelector("#task-list");
+ let listCont = ul.querySelectorAll(".list-cont");
+
+ listCont.forEach((items)=>{
+
+  let taskText = items.querySelector("li").textContent || items.querySelector("li").innerText;
+
+if(taskText.toUpperCase().includes(filter)){
+  items.style.display = "";
+}else{
+  items.style.display = "none";
+ }
+}
+
+ )}
+
+//  function searchFilter() {
+//   let input, filter, ul, taskContainers;
+
+//   input = document.querySelector(".search-input");
+//   filter = input.value.toUpperCase();
+//   ul = document.querySelector("#task-list");
+//   taskContainers = ul.querySelectorAll(".list-cont");
+
+//   taskContainers.forEach(taskContainer => {
+//     let taskText = taskContainer.querySelector("li").textContent || taskContainer.querySelector("li").innerText;
+//     if (taskText.toUpperCase().includes(filter)) {
+//       taskContainer.style.display = "";
+//     } else {
+//       taskContainer.style.display = "none";
+//     }
+//   });
+// }
+
+
+
+// function searchFilter(){
+//   let input, filter, ul, li, a, i, txtValue;
+//   input = document.querySelector(".search-input");
+//   filter = input.value.toUpperCase();
+//   ul = document.querySelector("#task-list");
+//   li = ul.querySelectorAll(".list-cont"); // Select list containers instead of direct list items
+//   for (i = 0; i < li.length; i++) {
+//     a = li[i].querySelector("li"); // Query the li element within each list container
+//     txtValue = a.innerText;
+//     if (txtValue.toUpperCase().indexOf(filter) > -1) {
+//       li[i].style.display = "";
+//     } else {
+//       li[i].style.display = "none";
+//     }
+//   }
+// }
 
 // local storage
 
@@ -68,13 +132,18 @@ function storeLocalValue(value) {
 
   if (localStorage.getItem("tasks") === null) {
     tasks = [];
+    // console.log("1");
   } else {
     tasks = JSON.parse(localStorage.getItem("tasks"));
+    // console.log("2");
   }
 
   tasks.push(value);
+  // console.log();
+  
 
   localStorage.setItem("tasks", JSON.stringify(tasks));
+   // localstorage doesn't allow array
 }
 
 function removeLocalValue(value) {
@@ -82,7 +151,8 @@ function removeLocalValue(value) {
 
   tasks = tasks.filter((task) => task !== value);
 
-  localStorage.setItem("tasks", JSON.stringify(tasks));
+  localStorage.setItem("tasks", JSON.stringify(tasks)); 
+  // localstorage doesn't allow array
 }
 
 function getTask() {
@@ -109,8 +179,7 @@ function getTask() {
   });
 }
 
-
-function removeAllLocalStore(){
-  taskList.innerHTML ="";
+function removeAllLocalStore() {
+  taskList.innerHTML = "";
   localStorage.clear("tasks");
 }
