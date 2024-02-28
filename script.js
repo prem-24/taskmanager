@@ -50,25 +50,8 @@ if(taskText.toUpperCase().includes(filter)){
 
  )}
 
-//  function searchFilter() {
-//   let input, filter, ul, taskContainers;
 
-//   input = document.querySelector(".search-input");
-//   filter = input.value.toUpperCase();
-//   ul = document.querySelector("#task-list");
-//   taskContainers = ul.querySelectorAll(".list-cont");
-
-//   taskContainers.forEach(taskContainer => {
-//     let taskText = taskContainer.querySelector("li").textContent || taskContainer.querySelector("li").innerText;
-//     if (taskText.toUpperCase().includes(filter)) {
-//       taskContainer.style.display = "";
-//     } else {
-//       taskContainer.style.display = "none";
-//     }
-//   });
-// }
-
-
+// using for loop
 
 // function searchFilter(){
 //   let input, filter, ul, li, a, i, txtValue;
